@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<link href="/style.css" rel="stylesheet" type="text/css">
+<head>
+    <meta charset="UTF-8">
+    <title>Carpets</title>
+</head>
+<body>
+<div class="class">
+    <h1>Ковры</h1>
+    <ul>
+        <div th:each="carpet : ${carpets}">
+            <li>
+                <a th:href="@{/carpets/{id}(id=${carpet.getId()})}"
+                   th:text="${carpet.toString()}">value</a></li>
+        </div>
+    </ul>
+    <hr/>
+    <a class="button" href="/clients/add">Добавить нового клиента в базу</a>
+    <a class="button" href="/carpets/add">Добавить ковер</a>
+    <br/>
+    <a class="button" href="/clients">Список клиентов</a>
+</div>
+
+
+</body>
+</html>

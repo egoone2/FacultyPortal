@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<link href="/style.css" rel="stylesheet" type="text/css">
+<head>
+    <meta charset="UTF-8">
+    <title>Клиенты</title>
+</head>
+<body>
+<ul>
+    <div th:each="client : ${clients}">
+        <li>
+            <p th:text="${client.getName()} + ',   ' + ${client.getPhoneNumber()} + ', скидка:  ' + ${client.getSale()} + '%'">
+                value</p></li>
+    </div>
+</ul>
+<a href="/carpets">Список ковров</a>
+</body>
+</html>

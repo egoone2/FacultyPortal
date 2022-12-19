@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<link href="/style.css" rel="stylesheet" type="text/css">
+<head>
+    <meta charset="UTF-8">
+    <title>Carpet</title>
+</head>
+<body>
+<p th:text="'Стоимость за стирку: ' + ${carpet.getTotalPrice()}">value</p>
+<p th:text="'Площадь: ' + ${carpet.getArea()}">value</p>
+<p th:text="'Взят: ' + ${carpet.getWhenTaken()}">value</p>
+
+<div th:if="${owner == null}">
+    <form th:method="POST" th:action="@{/clients}" th:object="${client}">
+        <input type="submit" value="Добавить"/>
+    </form>
+</div>
+
+<div th:if="${!(owner == null)}">
+    <p th:text="'Номер телефона клиента:' + ${carpet.getOwner().getPhoneNumber()}">value</p>
+</div>
+</body>
+</html>

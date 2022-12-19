@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<link href="/style.css" rel="stylesheet" type="text/css">
+<head>
+    <meta charset="UTF-8">
+    <title>Add carpet</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/carpets}" th:object="${carpet}">
+    <label for="len">Введите длину: </label>
+    <input type="text" th:field="*{length}" id="len">
+    <div style="color: red" th:if="${#fields.hasErrors('length')}" th:errors="*{length}">Len validation</div>
+    <br/>
+    <label for="wid">Введите ширину: </label>
+    <input type="text" th:field="*{width}" id="wid">
+    <div style="color: red" th:if="${#fields.hasErrors('width')}" th:errors="*{width}">Width validation</div>
+    <br/>
+    <label for="phone">Введите номер клиента: </label>
+    <input type="text" th:field="*{clientPhoneNumber}" id="phone">
+    <div style="color: red" th:if="${#fields.hasErrors('clientPhoneNumber')}" th:errors="*{clientPhoneNumber}">phone validation</div>
+    <br/>
+    <label for="name">Введите имя клиента: </label>
+    <input type="text" th:field="*{clientName}" id="name">
+    <br/>
+    <input type="submit" value="Добавить"/>
+</form>
+</body>
+</html>
