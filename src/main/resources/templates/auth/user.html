@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<body>
+
+<p th:text="'Имя пользователя: ' + ${user.getUsername()}">name</p>
+<p th:text="'Роль: ' + ${user.getRole().name()}">role</p>
+
+<br/>
+
+<form th:method="post" th:action="@{/teacher/{id}(id = ${user.getId()})}">
+  <input type="submit" value="Добавить роль - преподаватель">
+</form>
+
+<form th:method="post" th:action="@{/student/{id}(id = ${user.getId()})}">
+    <input type="submit" value="Добавить роль - студент">
+</form>
+</body>
+</html>

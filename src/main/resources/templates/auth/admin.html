@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin page</title>
+</head>
+<body>
+<h1>Hello, ADMIN!</h1>
+<h2>Здесь администратор может раздавать роли пользователям сайта</h2>
+
+<form th:action="@{/admin}" method="get">
+    <input type="text" name="keyword" th:value="${keyword}" placeholder="Найти пользователя по никнейму" size="50">
+    <button type="submit">Search</button>
+</form>
+
+<table>
+    <thead>
+    <tr>
+        <th>Username</th>
+        <th>Role</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <div th:each="usr : ${users}">
+        <tr>
+            <td th:text="${usr.getUsername()}">Username</td>
+            <td th:text="${usr.getRole()}">Role</td>
+            <td><a th:href="@{/users/{id}(id=${usr.getId()})}">Page</a></td>
+        </tr>
+    </div>
+    </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Carpetwash</title>
+</head>
+<body>
+
+
+
+
+<br/>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
+
+<form th:action="@{/registration}" method="get">
+    <input type="submit" value="Регистрация"/>
+</form>
+
+<a href="/admin">Admin page</a>
+</body>
+</html>

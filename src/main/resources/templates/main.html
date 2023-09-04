@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main page</title>
+</head>
+<body>
+
+<form th:action="@{/mes}" method="post">
+    <input type="text" name="message" placeholder="Введите сообщение" size="50"/>
+    <button type="submit">Post</button>
+</form>
+
+
+<div th:each="m : ${messages}">
+    <li>
+        <a th:text="${m.getContent}">value</a>
+    </li>
+</div>
+</body>
+</html>
