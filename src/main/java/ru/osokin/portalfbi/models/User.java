@@ -22,6 +22,13 @@ public class User {
     @NonNull
     @NotEmpty(message = "Name should not be empty")
     @Size(min = 3,max = 100)
+    private String name;
+    @Column(name = "surname")
+    @NonNull
+    @NotEmpty(message = "Surname should not be empty")
+    @Size(min = 3,max = 100)
+    private String surname;
+    @Column(name = "username")
     private String username;
     @Column
     @NonNull

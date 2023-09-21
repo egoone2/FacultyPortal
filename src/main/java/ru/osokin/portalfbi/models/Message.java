@@ -1,10 +1,8 @@
 package ru.osokin.portalfbi.models;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -22,9 +20,18 @@ public class Message {
     @Column
     @NonNull
     private String content;
+
+    @Column
+    private String filename;
+
+    @EqualsAndHashCode.Exclude
     @ManyToOne
     @JoinColumn(name = "author_id", referencedColumnName = "id")
     private User author;
+
+    @Column(name = "author_name")
+    @NotEmpty
+    private String authorName;
 
     @Column(name = "creation_time")
     @Temporal(value = TemporalType.TIMESTAMP)

@@ -14,7 +14,6 @@ import ru.osokin.portalfbi.util.UsersValidator;
 public class AuthController {
 
     private final RegistrationService registrationService;
-
     private final UsersValidator validator;
 
 
@@ -24,12 +23,12 @@ public class AuthController {
     }
 
     @GetMapping("/registration")
-    public String registrationPage(@ModelAttribute("visitor") User user) {
+    public String registrationPage(@ModelAttribute("user") User user) {
         return "auth/registration";
     }
 
     @PostMapping("/registration")
-    public String performRegistration(@ModelAttribute("visitor") @Valid User user,
+    public String performRegistration(@ModelAttribute("user") @Valid User user,
                                       BindingResult bindingResult) {
         validator.validate(user, bindingResult);
         if (bindingResult.hasErrors())

@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>ru.osokin</groupId>
 	<artifactId>carpetwash</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>CarpetWash PetProj</name>
 	<description>CRUD - project for carpet wash service</description>
 	<properties>

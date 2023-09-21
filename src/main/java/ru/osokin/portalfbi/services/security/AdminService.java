@@ -43,20 +43,6 @@ public class AdminService {
         usersRepository.save(user);
     }
 
-    private void giveRoleInCurrentSession(Role role) {
-        SecurityContext context = SecurityContextHolder.getContext();
-        Authentication authentication = context.getAuthentication();
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        User userToGetRole = userDetails.getUser();
-        userToGetRole.setRole(role);
-        usersRepository.save(userToGetRole);
-
-        Authentication authenticationToken = new UsernamePasswordAuthenticationToken(
-                userDetails,
-                authentication.getCredentials(),
-                Collections.singletonList(role));
-        context.setAuthentication(authenticationToken);
-    }
 
     public List<User> findByKeyword(String keyword) {
         if (keyword != null) return usersRepository.findByKeyword(keyword);

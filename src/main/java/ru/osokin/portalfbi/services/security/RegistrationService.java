@@ -12,13 +12,13 @@ import ru.osokin.portalfbi.repositories.UsersRepository;
 @RequiredArgsConstructor
 public class RegistrationService {
 
-    private final UsersRepository visitorsRepository;
+    private final UsersRepository usersRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public void register(User visitor) {
-        visitor.setPassword(passwordEncoder.encode(visitor.getPassword()));
-        visitor.setRole(Role.ROLE_USER);
-        visitorsRepository.save(visitor);
+    public void register(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRole(Role.ROLE_USER);
+        usersRepository.save(user);
     }
 }

@@ -5,13 +5,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import ru.osokin.portalfbi.models.User;
-import ru.osokin.portalfbi.services.security.UsersService;
+import ru.osokin.portalfbi.services.UsersService;
 
 @Component
 @RequiredArgsConstructor
 public class UsersValidator implements Validator {
 
-    private final UsersService visitorsService;
+    private final UsersService usersService;
 
     @Override
     public boolean supports(Class<?> clazz) {
@@ -21,7 +21,7 @@ public class UsersValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         User user = (User) target;
-        if (visitorsService.getByUsername(user.getUsername()).isPresent())
+        if (usersService.getByUsername(user.getUsername()).isPresent())
             errors.rejectValue("username", "", "Человек с таким именем пользователя уже есть в системе.");
     }
 }

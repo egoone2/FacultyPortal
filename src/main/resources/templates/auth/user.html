@@ -6,16 +6,17 @@
 </head>
 <body>
 
-<p th:text="'Имя пользователя: ' + ${user.getUsername()}">name</p>
+<p th:text="'Логин: ' + ${user.getUsername()}">name</p>
+<p th:text="'ФИО: ' + ${user.getName() + ' ' + user.getSurname()}">name</p>
 <p th:text="'Роль: ' + ${user.getRole().name()}">role</p>
 
 <br/>
 
-<form th:method="post" th:action="@{/teacher/{id}(id = ${user.getId()})}">
+<form th:method="post" th:action="@{/admin/teacher/{id}(id = ${user.getId()})}">
   <input type="submit" value="Добавить роль - преподаватель">
 </form>
 
-<form th:method="post" th:action="@{/student/{id}(id = ${user.getId()})}">
+<form th:method="post" th:action="@{/admin/student/{id}(id = ${user.getId()})}">
     <input type="submit" value="Добавить роль - студент">
 </form>
 </body>

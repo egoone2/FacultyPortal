@@ -14,6 +14,7 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/admin")
 public class AdminController {
 
     private final AdminService adminService;
@@ -26,7 +27,7 @@ public class AdminController {
         return "auth/userinfo";
     }
 
-    @GetMapping("/admin")
+    @GetMapping("/")
     public String adminPage(Model model, String keyword) {
         List<User> users = adminService.findByKeyword(keyword);
         model.addAttribute("users", users);

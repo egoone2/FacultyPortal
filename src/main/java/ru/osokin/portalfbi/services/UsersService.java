@@ -1,4 +1,4 @@
-package ru.osokin.portalfbi.services.security;
+package ru.osokin.portalfbi.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,13 +11,13 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UsersService {
 
-    private final UsersRepository visitorsRepository;
+    private final UsersRepository usersRepository;
 
     public Optional<User> getById(Long id) {
-        return visitorsRepository.findById(id);
+        return usersRepository.findById(id);
     }
 
     public Optional<User> getByUsername(String username) {
-        return visitorsRepository.findByUsername(username);
+        return usersRepository.findByUsername(username);
     }
 }

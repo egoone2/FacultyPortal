@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.osokin.portalfbi.models.User;
-import ru.osokin.portalfbi.services.security.UsersService;
+import ru.osokin.portalfbi.services.UsersService;
 
 @Controller
 @RequiredArgsConstructor

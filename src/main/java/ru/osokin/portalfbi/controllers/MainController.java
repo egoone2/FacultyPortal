@@ -4,13 +4,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import ru.osokin.portalfbi.repositories.MessagesRepository;
+import ru.osokin.portalfbi.services.MessageService;
 
 @Controller
 @RequiredArgsConstructor
 public class MainController {
 
-    private final MessagesRepository messagesRepository;
+    private final MessageService messageService;
 
     @GetMapping("/")
     public String home() {
@@ -19,9 +19,9 @@ public class MainController {
 
     @GetMapping("/main")
     public String main(Model model) {
-        model.addAttribute("messages", messagesRepository.findAll());
+        model.addAttribute("messages", messageService.getAll());
 
-        return "main";
+        return "index";
     }
 
 }

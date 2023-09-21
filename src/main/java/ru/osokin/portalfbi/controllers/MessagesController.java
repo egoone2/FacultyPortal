@@ -1,44 +1,36 @@
 package ru.osokin.portalfbi.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.hibernate.Hibernate;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.osokin.portalfbi.models.Message;
-import ru.osokin.portalfbi.models.User;
-import ru.osokin.portalfbi.repositories.MessagesRepository;
-import ru.osokin.portalfbi.repositories.UsersRepository;
-import ru.osokin.portalfbi.security.UserDetailsImpl;
+import org.springframework.web.multipart.MultipartFile;
+import ru.osokin.portalfbi.services.FileStorageService;
+import ru.osokin.portalfbi.services.MessageService;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/mes")
 public class MessagesController {
+    private final MessageService messageService;
+    private final FileStorageService fileStorageService;
 
-    private final MessagesRepository messagesRepository;
-    private final UsersRepository usersRepository;
+    @GetMapping("/new")
+    public String newMessage() {
+        return "newMessage";
+    }
 
     @PostMapping
-    public String writeMessage(@RequestParam String message, Model model) {
-        Message mes = new Message(message);
-//        UserDetailsImpl userDetails = getUserDetails();
-//        User user = userDetails.getUser();
-//        usersRepository.save(user);
-//        mes.setAuthor(user);
-        messagesRepository.save(mes);
-        model.addAttribute("messages", messagesRepository.findAll());
+    public String writeMessage(@RequestParam String message, @RequestParam MultipartFile file, Model model) {
+        String filename = fileStorageService.storeFile(file);
+        messageService.newMessage(message, filename);
+        model.addAttribute("messages", messageService.getAll());
         return "redirect:/main";
     }
 
-    private UserDetailsImpl getUserDetails() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return (UserDetailsImpl) authentication.getPrincipal();
-    }
+
+
 }

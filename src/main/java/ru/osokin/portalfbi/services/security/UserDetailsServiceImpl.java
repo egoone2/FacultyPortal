@@ -14,14 +14,16 @@ import ru.osokin.portalfbi.security.UserDetailsImpl;
 @RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private final UsersRepository visitorsRepository;
+    private final UsersRepository usersRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = visitorsRepository.findByUsername(username).orElseThrow(() ->
+        User user = usersRepository.findByUsername(username).orElseThrow(() ->
                 new UsernameNotFoundException("Пользователь не найден!"));
 
         return new UserDetailsImpl(user);
     }
+
+
 
 }

@@ -1,7 +1,9 @@
 CREATE TABLE Users
 (
     id       int DEFAULT nextval('serial'),
-    username varchar(100) NOT NULL,
+    name     varchar(100) NOT NULL,
+    surname  varchar(100),
+    email    varchar(100) not null unique,
     password varchar      NOT NULL,
     role     varchar,
     primary key (id)
@@ -9,10 +11,13 @@ CREATE TABLE Users
 
 CREATE TABLE Messages
 (
-    id        int DEFAULT nextval('serial'),
-    content   varchar,
-    author_id int,
+    id          int                   DEFAULT nextval('serial'),
+    content     varchar,
+    filename    varchar      not null default '',
+    author_id   int,
+    author_name varchar(100) not null default '',
     primary key (id),
+
     CONSTRAINT fk_user
         FOREIGN KEY (author_id)
             REFERENCES Users (id)
