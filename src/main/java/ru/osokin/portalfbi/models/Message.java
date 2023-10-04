@@ -1,10 +1,14 @@
 package ru.osokin.portalfbi.models;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
+
 import lombok.*;
 
-import java.time.LocalDateTime;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -21,9 +25,6 @@ public class Message {
     @NonNull
     private String content;
 
-    @Column
-    private String filename;
-
     @EqualsAndHashCode.Exclude
     @ManyToOne
     @JoinColumn(name = "author_id", referencedColumnName = "id")
@@ -35,5 +36,11 @@ public class Message {
 
     @Column(name = "creation_time")
     @Temporal(value = TemporalType.TIMESTAMP)
-    private LocalDateTime timestamp = LocalDateTime.now();
+    private Date creationTime = new Date();
+
+    @OneToMany(mappedBy = "message")
+    private Set<ServerFile> files = new HashSet<>();
+
+
+
 }

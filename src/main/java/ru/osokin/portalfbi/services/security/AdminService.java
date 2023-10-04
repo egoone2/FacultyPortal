@@ -1,18 +1,12 @@
 package ru.osokin.portalfbi.services.security;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.osokin.portalfbi.models.Role;
 import ru.osokin.portalfbi.models.User;
 import ru.osokin.portalfbi.repositories.UsersRepository;
-import ru.osokin.portalfbi.security.UserDetailsImpl;
 
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -36,6 +30,7 @@ public class AdminService {
     public void giveStudentRole(Long id) {
         giveRoleToUser(id, Role.ROLE_STUDENT);
     }
+
 
     private void giveRoleToUser(Long id, Role role) {
         User user = usersRepository.findById(id).get();

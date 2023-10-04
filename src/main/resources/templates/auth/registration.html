@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<link href="/css/style.css" rel="stylesheet" type="text/css">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<link rel="stylesheet" th:href="@{/css/style.css}" type="text/css"/>
 <head>
   <meta charset="UTF-8">
   <title>Регистрация</title>
 </head>
 <body>
+<br/>
+<hr/>
 <form th:method="post" th:action="@{/registration}" th:object="${user}">
   <label for="name">Введите имя</label>
   <input type="text" th:field="*{name}" id="name"/>
@@ -23,7 +25,10 @@
   <input type="password" th:field="*{password}" id="password"/>
   <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</div>
   <br/>
-  <input type="submit" value="Sign up">
+
+  <button type="submit" class="btn btn-4 hover-border-8">
+    <span>Sign up</span>
+  </button>
 
   <br/>
 

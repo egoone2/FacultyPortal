@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
+<link rel="stylesheet" th:href="@{/css/style.css}" type="text/css"/>
 <head>
     <meta charset="UTF-8">
     <title>User</title>
@@ -11,9 +12,23 @@
 <p th:text="'Роль: ' + ${user.getRole().name()}">role</p>
 
 <br/>
-
+<div class="highlight">
+    <h3>Сообщения пользователя:</h3>
+</div>
+<div class="item" th:each="message : ${messages}">
+    <div class="image left">
+        <a th:href="@{../uploads/{filename}(filename=${message.getFilename()})}">
+            <img th:src="@{../uploads/previews/{filename}(filename=${message.getFilename()})}" alt="preview"/>
+        </a>
+    </div>
+    <div class="text left">
+        <p th:text="${message.getContent()}"></p>
+        <a href="#" class="more">Find out more</a>
+    </div>
+    <div class="cl">&nbsp;</div>
+</div>
 <form th:method="post" th:action="@{/admin/teacher/{id}(id = ${user.getId()})}">
-  <input type="submit" value="Добавить роль - преподаватель">
+    <input type="submit" value="Добавить роль - преподаватель">
 </form>
 
 <form th:method="post" th:action="@{/admin/student/{id}(id = ${user.getId()})}">

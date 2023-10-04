@@ -14,6 +14,10 @@ public interface UsersRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByUsername(String username);
 
-    @Query(value = "SELECT * FROM Users u WHERE u.name LIKE %:keyword%", nativeQuery = true)
+    @Query("SELECT u FROM User u WHERE u.name LIKE :keyword")
     List<User> findByKeyword(@Param("keyword") String keyword);
+
+    public static void main(String[] args) {
+
+    }
 }

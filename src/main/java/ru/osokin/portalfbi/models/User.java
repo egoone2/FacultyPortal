@@ -1,12 +1,14 @@
 package ru.osokin.portalfbi.models;
 
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
+
+import jakarta.persistence.*;
+import ru.osokin.portalfbi.models.todo.Group;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "Users")
@@ -28,7 +30,7 @@ public class User {
     @NotEmpty(message = "Surname should not be empty")
     @Size(min = 3,max = 100)
     private String surname;
-    @Column(name = "username")
+    @Column(name = "email")
     private String username;
     @Column
     @NonNull
@@ -37,6 +39,11 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @EqualsAndHashCode.Exclude
+    @OneToMany(mappedBy = "author")
+    private Set<Message> messages = new HashSet<>();
+
 
 
 }

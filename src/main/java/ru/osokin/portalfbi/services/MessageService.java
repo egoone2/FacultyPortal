@@ -5,8 +5,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 import ru.osokin.portalfbi.models.Message;
+import ru.osokin.portalfbi.models.ServerFile;
 import ru.osokin.portalfbi.models.User;
 import ru.osokin.portalfbi.repositories.MessagesRepository;
 import ru.osokin.portalfbi.security.UserDetailsImpl;
@@ -25,14 +25,15 @@ public class MessageService {
     }
 
     @Transactional
-    public void newMessage(String message, String filename) {
+    public void newMessage(String message, ServerFile file) {
         Message messageToWrite = new Message(message);
         UserDetailsImpl userDetails = getUserDetails();
         User user = userDetails.getUser();
         messageToWrite.setAuthor(user);
         String uuid = UUID.randomUUID().toString();
         messageToWrite.setAuthorName(user.getName() + " " + user.getSurname());
-        messageToWrite.setFilename(filename);
+        messageToWrite.getFiles().add(file);
+        file.setMessage(messageToWrite);
         messagesRepository.save(messageToWrite);
     }
 
